@@ -20,7 +20,7 @@ public class Ex5 {
         // Переходим на главную страницу сайта
         driver.get("https://dan-it.com.ua/");
 
-        // Выполняем клик по элементу с указанным XPath
+        // Выполняем клик по элементу
         WebElement element1 = driver.findElement(By.xpath("/html/body/main/div[1]/div/a[1]"));
         element1.click();
 
@@ -33,15 +33,12 @@ public class Ex5 {
         // Поиск элемента с текстом
         driver.findElement(By.xpath("//a[@class='page-header__phone']")).click();
 
-
-
-        // Шаг 4: Ожидаем 2 секунды
+        // 2 секунды
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
 
         // Закрываем браузер
         System.out.println(11111);

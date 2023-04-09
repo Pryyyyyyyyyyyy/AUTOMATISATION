@@ -20,13 +20,13 @@ public class Ex4 {
         // Ожидание неявного ожидания
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        // Переход на страницу https://uhomki.com.ua/koshki/1074/
+        // Переход на страницу
         driver.get("https://uhomki.com.ua/koshki/1074/");
 
         // Задержка 2 секунды
         sleep(2000);
 
-        // Наведение курсора на элемент "Аквариумистика"
+        // Наведение курсора на элемент
         WebElement aquariumistikaElement = driver.findElement(By.linkText("Аквариумистика"));
         Actions actions = new Actions(driver);
         actions.moveToElement(aquariumistikaElement).build().perform();
@@ -35,7 +35,7 @@ public class Ex4 {
         // Задержка 2 секунды
         sleep(2000);
 
-        // Поиск элемента по имени "Аквариумы" и клик на элемент
+        // Поиск элемента по имени и клик на элемент
         WebElement akvariumyElement = driver.findElement(By.linkText("Аквариумы"));
         akvariumyElement.click();
 

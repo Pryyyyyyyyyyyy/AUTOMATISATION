@@ -19,18 +19,18 @@ public class Ex8 {
         ukrLang.click();
         // Найти элемент 1
         WebElement elem1 = driver.findElement(By.cssSelector(".main-info__title"));
-        // Сделать задержку 2 секунды
+        // задержка 2 секунды
         Thread.sleep(2000);
-        // Навести курсор на этот элемент, без клика
+        // Навести курсор на этот элемент
         Actions actions = new Actions(driver);
         actions.moveToElement(elem1).perform();
         // Вывести "1 элемент" в консоль
         System.out.println("1 элемент");
-        // Сделать задержку 2 секунды
+        // задержка 2 секунды
         Thread.sleep(2000);
         // Найти элемент 2
         WebElement elem2 = driver.findElement(By.cssSelector(".main-expertise__point"));
-        // Сделать задержку 2 секунды
+        // задержка 2 секунды
         Thread.sleep(2000);
         // Вывести "2 элемент" в консоль
         System.out.println("2 элемент");

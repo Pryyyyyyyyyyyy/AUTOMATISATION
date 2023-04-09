@@ -17,54 +17,54 @@ public class Ex6 {
         // Создаем экземпляр WebDriver
         WebDriver driver = new ChromeDriver();
 
-        // Ожидание неявного ожидания 10 секунд
+        // Ожидание неявного ожидания
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        // Шаг 1: Перейти на сайт
+        // Перейти на сайт
         driver.get("https://dan-it.com.ua/");
 
-        // Шаг 2: Задержка 2 секунды
+        // Задержка 2 секунды
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Шаг 3: Клик по элементу "Українська"
+        // Клик по элементу "Українська"
         WebElement langLink = driver.findElement(By.cssSelector(".choose-lang__link"));
         langLink.click();
 
-        // Шаг 4: Задержка 2 секунды
+        // Задержка 2 секунды
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Шаг 5: Найти элемент и переместить курсор на него
+        // Найти элемент и переместить курсор на него
         WebElement bannerMetaName = driver.findElement(By.cssSelector(".banner-meta__name"));
         Actions actions = new Actions(driver);
         actions.moveToElement(bannerMetaName).perform();
         System.out.println("Найден элемент");
 
-        // Шаг 6: Задержка 2 секунды
+        // Задержка 2 секунды
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Шаг 7: Клик на элемент
+        // Клик на элемент
         bannerMetaName.click();
 
-        // Шаг 8: Задержка 2 секунды
+        // Задержка 2 секунды
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Шаг 9: Закрыть браузер
+        // Закрыть браузер
         driver.quit();
     }
 }

@@ -13,25 +13,25 @@ public class Ex3 {
         // Создаем экземпляр веб-драйвера Chrome
         WebDriver driver = new ChromeDriver();
 
-        // Открываем веб-страницу https://dan-it.com.ua/
+        // Открываем веб-страницу
         driver.get("https://dan-it.com.ua/");
 
         try {
-            // Выполняем клик по элементу с указанным XPath /html/body/main/div[1]/div/a[1]
+            // Выполняем клик по элементу
             WebElement element1 = driver.findElement(By.xpath("/html/body/main/div[1]/div/a[1]"));
             element1.click();
 
             // Ждем 2 секунды
             Thread.sleep(2000);
 
-            // Выполняем клик по элементу с текстом "IT-освіта"
+            // Клик по элементу с текстом IT-освіта
             WebElement element = driver.findElement(By.xpath("//*[contains(text(),'IT-освіта')]"));
             element.click();
 
             // Ждем 2 секунды
             Thread.sleep(2000);
 
-            // Выполняем клик по элементу с классом "main-banner-btn"
+            // Выполняем клик по элементу
             WebElement element2 = driver.findElement(By.cssSelector(".main-banner-btn"));
             element2.click();
 
@@ -40,7 +40,7 @@ public class Ex3 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
-            // Закрываем веб-драйвер после использования
+            // Закрываем веб-драйвер
             driver.quit();
         }
     }

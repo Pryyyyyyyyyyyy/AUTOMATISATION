@@ -166,9 +166,4 @@ public class Ex7 {
         }
     }
 
-/*    // Метод для перемещения курсора на элемент
-    public static void moveToElement(WebDriver driver, WebElement element) {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element).build().perform();
-    }*/
 }

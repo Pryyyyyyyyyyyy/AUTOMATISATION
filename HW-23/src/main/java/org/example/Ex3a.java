@@ -8,7 +8,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class Ex3 {
+public class Ex3a {
+
+    public static class AttributeNotFoundException extends Exception {
+        public AttributeNotFoundException(String message) {
+            super(message);
+        }
+    }
+
     public static void main(String[] args) {
         WebDriverManager.chromedriver().setup();
 
@@ -35,6 +42,16 @@ public class Ex3 {
         System.out.println("Element Text: " + text);
         System.out.println("Element Center Coordinates: (" + center.getX() + ", " + center.getY() + ")");
 
+        try {
+            String customAttribute = element.getAttribute("name");
+            if (customAttribute == null) {
+                throw new AttributeNotFoundException("Attribute 'name' not found for element.");
+            }
+            System.out.println("Element Name: " + customAttribute);
+        } catch (AttributeNotFoundException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
         driver.quit();
     }
 
@@ -43,6 +60,5 @@ public class Ex3 {
         int centerY = element.getLocation().getY() + element.getSize().getHeight() / 2;
         return new Point(centerX, centerY);
     }
-
 
 }

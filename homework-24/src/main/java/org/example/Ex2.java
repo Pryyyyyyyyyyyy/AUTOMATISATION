@@ -3,12 +3,13 @@ package org.example;
 
 // help meeeeee its terrible
 
->>>>>>> github/master
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import java.time.Duration;
+
 
 public class Ex2 {
     private static class Url {
@@ -20,10 +21,6 @@ public class Ex2 {
         private static final By r8 = By.cssSelector("[r = '8']");
         private static final By textArea = By.cssSelector("textarea");
     }
-
-import java.time.Duration;
-
-public class Ex2 {
 
     public static void main(String[] args) throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");

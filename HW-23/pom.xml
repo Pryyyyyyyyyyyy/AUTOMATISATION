@@ -22,6 +22,21 @@
             <artifactId>webdrivermanager</artifactId>
             <version>5.3.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>point-at-length</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.supasintatiyanupanwong.libraries.android.kits.location</groupId>
+            <artifactId>location-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.supasintatiyanupanwong.libraries.android.kits.location</groupId>
+            <artifactId>location-google</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
 </project>

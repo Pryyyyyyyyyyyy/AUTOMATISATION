@@ -11,6 +11,8 @@
     <modules>
         <module>homework-22</module>
         <module>HW-23</module>
+        <module>homework-24</module>
+        <module>homework-25</module>
     </modules>
 
     <properties>
@@ -24,6 +26,21 @@
         <artifactId>selenium-java</artifactId>
         <version>4.8.3</version>
     </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>point-at-length</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.supasintatiyanupanwong.libraries.android.kits.location</groupId>
+            <artifactId>location-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.supasintatiyanupanwong.libraries.android.kits.location</groupId>
+            <artifactId>location-google</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
 

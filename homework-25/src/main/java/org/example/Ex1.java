@@ -1,7 +1,187 @@
 package org.example;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.Alert;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
 public class Ex1 {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        // Установка пути к драйверу для Chrome
+        System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
+
+        // Создание экземпляра WebDriver для Chrome
+        WebDriver driver = new ChromeDriver();
+
+        // Установка неявного ожидания
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+        // Открытие страницы поиска Google
+        driver.get("https://www.google.com/search");
+
+        // Находим элемент поисковой строки и вводим ссылку на регистрацию Guinness World Records
+        WebElement searchInput = driver.findElement(By.name("q"));
+        searchInput.sendKeys("https://www.guinnessworldrecords.com/account/register?");
+        searchInput.submit();
+
+        // Находим элемент результата поиска и выполняем действие MoveTo
+        WebElement searchResult = driver.findElement(By.linkText("Register official world record"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(searchResult).perform();
+
+        // Открываем найденный элемент в новом окне браузера в фоне
+        String link = searchResult.findElement(By.linkText("Register official world record")).getAttribute("href");
+        String script = "window.open('" + link + "', '_blank');";
+        ((JavascriptExecutor) driver).executeScript(script);
+
+        // Находим элемент поисковой строки и вводим ссылку на страницу AlertsDemo
+        searchInput = driver.findElement(By.name("q"));
+        searchInput.clear();
+        searchInput.sendKeys("https://www.hyrtutorials.com/p/alertsdemo.html");
+        searchInput.submit();
+
+        // Находим элемент результата поиска и выполняем действие MoveTo
+        searchResult = driver.findElement(By.xpath("//h3[text()='AlertsDemo - H Y R Tutorials']"));
+        actions = new Actions(driver);
+        actions.moveToElement(searchResult).perform();
+
+        // Открываем найденный элемент в новом окне браузера в фоне
+        link = searchResult.findElement(By.tagName("a")).getAttribute("href");
+        script = "window.open('" + link + "', '_blank');";
+        ((JavascriptExecutor) driver).executeScript(script);
+
+        // Максимальное ожидание загрузки страницы в 10 секунд
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+
+        // Переход на страницу https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit
+        driver.get("https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit");
+
+        // Поиск элемента <input type="submit" value="Submit"> и клик на него
+        WebElement submitButton = driver.findElement(By.cssSelector("input[type='submit'][value='Submit']"));
+        submitButton.click();
+
+        // Неявное ожидание в 2 секунды
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+        // Переключение на фрейм с элементом <span class="cm-m-xml"></span>
+        driver.switchTo().frame("iframeResult");
+        WebElement spanElement = driver.findElement(By.cssSelector("span.cm-m-xml"));
+
+        // MoveTo и клик на элементе <span class="cm-m-xml"></span>
+        Actions actions1 = new Actions(driver);
+        actions1.moveToElement(spanElement).click().perform();
+
+        // Ввод сообщения в поле ввода консоли
+        WebElement consoleInput = driver.findElement(By.cssSelector("div.ace_layer.ace_text-layer > textarea"));
+        consoleInput.sendKeys("Note: This tutorial will not teach you how servers are processing input. Processing input is explained in our PHP tutorial.");
+
+        // Неявное ожидание в 2 секунды
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+        // Переключение на окно страницы https://www.guinnessworldrecords.com/account/register?
+        driver.switchTo().defaultContent();
+        driver.findElement(By.cssSelector("a[href='https://www.guinnessworldrecords.com/account/register?']")).click();
+
+        // Неявное ожидание в 2 секунды
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+        // Заполнение полей формы
+        driver.findElement(By.id("LastName")).sendKeys("Prus");
+        driver.findElement(By.id("FirstName")).sendKeys("Hanna");
+        driver.findElement(By.id("DateOfBirthDay")).sendKeys("27");
+        driver.findElement(By.id("DateOfBirthMonth")).sendKeys("08");
+
+        // Неявное ожидание элементов на странице в течение 10 секунд
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+
+        // Находим элемент для ввода года рождения, вводим текст "1993"
+        WebElement yearInput = driver.findElement(By.id("DateOfBirthYear"));
+        yearInput.sendKeys("1993");
+
+        // Находим элемент для ввода email, вводим текст "meowmeow@mail.com"
+        WebElement emailInput = driver.findElement(By.id("EmailAddress"));
+        emailInput.sendKeys("meowmeow@mail.com");
+
+        // Находим элемент для ввода подтверждения email, вводим текст "meowmeow@mail.com"
+        WebElement confirmEmailInput = driver.findElement(By.id("ConfirmEmailAddress"));
+        confirmEmailInput.sendKeys("meowmeow@mail.com");
+
+        // Находим элемент для ввода пароля, вводим текст "meowmeow01"
+        WebElement passwordInput = driver.findElement(By.id("Password"));
+        passwordInput.sendKeys("meowmeow01");
+
+        // Находим элемент для ввода подтверждения пароля, вводим текст "meowmeow02"
+        WebElement confirmPasswordInput = driver.findElement(By.id("ConfirmPassword"));
+        confirmPasswordInput.sendKeys("meowmeow02");
+
+        // Находим элемент "Create a Password" и кликаем на него
+        WebElement createPassword = driver.findElement(By.xpath("//h2[contains(text(), 'Create a Password')]"));
+        createPassword.click();
+
+        // Выводим сообщение об ошибке в консоль
+        WebElement errorAlert = driver.findElement(By.xpath("//span[contains(text(), 'Confirm password') and contains(text(), 'Password') and contains(text(), 'not match')]"));
+        System.out.println(errorAlert.getText());
+
+        // Неявное ожидание 2 секунды
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Переключаемся на следующее окно браузера
+        String currentWindow = driver.getWindowHandle();
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (!windowHandle.equals(currentWindow)) {
+                driver.switchTo().window(windowHandle);
+                break;
+            }
+        }
+        // Нажатие на кнопку alertBox
+        WebElement alertBoxBtn = driver.findElement(By.id("alertBox"));
+        alertBoxBtn.click();
+
+        // Ожидание появления модального окна и нажатие кнопки "Ok"
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+
+        // Вывод сообщения в консоль
+        System.out.println("I am an alert box!");
+
+        // Нажатие на кнопку confirmBox
+        WebElement confirmBoxBtn = driver.findElement(By.id("confirmBox"));
+        confirmBoxBtn.click();
+
+        // Ожидание появления модального окна и нажатие кнопки "Cancel"
+        wait.until(ExpectedConditions.alertIsPresent()).dismiss();
+
+        // Вывод сообщения в консоль
+        System.out.println("Press a button!");
+
+        // Нажатие на кнопку promptBox
+        WebElement promptBoxBtn = driver.findElement(By.id("promptBox"));
+        promptBoxBtn.click();
+
+        // Ожидание появления модального окна, ввод текста и нажатие кнопки "Ok"
+        alert = wait.until(ExpectedConditions.alertIsPresent());
+        alert.sendKeys("Final step of this task");
+        alert.accept();
+
+        // Вывод сообщения в консоль
+        System.out.println("You entered text Final step of this task in prompt popup");
+
+       /* // Закрытие браузера
+        driver.quit();
+*/
     }
 }

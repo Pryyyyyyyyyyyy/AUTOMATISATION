@@ -103,24 +103,26 @@ public class Ex1 {
                 break;
             }
         }
+// Находим фрейм по его индексу
+        WebElement frame = driver.findElement(By.cssSelector("iframe[id='iframeResult']"));
+
+        driver.switchTo().frame(frame);
+
+// Теперь находим элемент внутри фрейма и взаимодействуем с ним
+        WebElement textarea = driver.findElement(By.id("fname"));
+        textarea.clear();
+        textarea.sendKeys("Аніцька");
+
+        driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.SECONDS);
+
+        WebElement textarea2 = driver.findElement(By.id("lname"));
+        textarea2.clear();
+        textarea2.sendKeys("Прус");
 
 
-
-
-        // Поиск элемента <input type="submit" value="Submit"> и клик на него
-        WebElement submitButton = driver.findElement(By.cssSelector("input[type='submit'][value='Submit']"));
-        submitButton.click();
-
-        // Неявное ожидание в 2 секунды
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-
-        // Переключение на фрейм с элементом <span class="cm-m-xml"></span>
-        driver.switchTo().frame("iframeResult");
-        WebElement spanElement = driver.findElement(By.cssSelector("span.cm-m-xml"));
-
-        // MoveTo и клик на элементе <span class="cm-m-xml"></span>
+      /*  // MoveTo и клик на элементе <span class="cm-m-xml"></span>
         Actions actions1 = new Actions(driver);
-        actions1.moveToElement(spanElement).click().perform();
+        actions1.moveToElement(spanElement).click().perform();*/
 
         // Ввод сообщения в поле ввода консоли
         WebElement consoleInput = driver.findElement(By.cssSelector("div.ace_layer.ace_text-layer > textarea"));

@@ -9,8 +9,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.time.Duration;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class Ex1 {
@@ -33,36 +36,78 @@ public class Ex1 {
         searchInput.submit();
 
         // Находим элемент результата поиска и выполняем действие MoveTo
-        WebElement searchResult = driver.findElement(By.linkText("Register official world record"));
+        WebElement searchResult = driver.findElement(By.cssSelector("a[href='https://www.guinnessworldrecords.com/account/register']"));
+
         Actions actions = new Actions(driver);
         actions.moveToElement(searchResult).perform();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         // Открываем найденный элемент в новом окне браузера в фоне
-        String link = searchResult.findElement(By.linkText("Register official world record")).getAttribute("href");
+        String link = searchResult.getAttribute("href");
         String script = "window.open('" + link + "', '_blank');";
         ((JavascriptExecutor) driver).executeScript(script);
 
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+// получаем список всех открытых окон
+        Set<String> handles = driver.getWindowHandles();
+// переключаемся на нужное окно
+        for (String handle : handles) {
+            driver.switchTo().window(handle);
+            if (driver.getTitle().equals("https://www.guinnessworldrecords.com/account/register? - Пошук Google")) {
+                break;
+            }
+        }
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+
+        WebElement searchButton = driver.findElement(By.id("APjFqb"));
+        searchButton.click();
+
+        System.out.println("открыто первое окно");
+
         // Находим элемент поисковой строки и вводим ссылку на страницу AlertsDemo
-        searchInput = driver.findElement(By.name("q"));
-        searchInput.clear();
-        searchInput.sendKeys("https://www.hyrtutorials.com/p/alertsdemo.html");
-        searchInput.submit();
+        WebElement searchInput1 = driver.findElement(By.id("APjFqb"));
+        searchInput1.clear();
+        searchInput1.sendKeys("https://www.hyrtutorials.com/p/alertsdemo.html");
+        searchInput1.submit();
 
         // Находим элемент результата поиска и выполняем действие MoveTo
-        searchResult = driver.findElement(By.xpath("//h3[text()='AlertsDemo - H Y R Tutorials']"));
+        searchResult = driver.findElement(By.cssSelector("a[href='https://www.hyrtutorials.com/p/alertsdemo.html']"));
         actions = new Actions(driver);
         actions.moveToElement(searchResult).perform();
 
         // Открываем найденный элемент в новом окне браузера в фоне
-        link = searchResult.findElement(By.tagName("a")).getAttribute("href");
+        link = searchResult.getAttribute("href");
         script = "window.open('" + link + "', '_blank');";
         ((JavascriptExecutor) driver).executeScript(script);
 
         // Максимальное ожидание загрузки страницы в 10 секунд
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 
-        // Переход на страницу https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit
-        driver.get("https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit");
+        /*// Переход на страницу https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit
+        driver.get("https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit");*/
+
+        // Ожидаем загрузки страницы
+        Duration timeoutDuration = Duration.ofSeconds(10);
+        WebDriverWait wait = new WebDriverWait(driver, timeoutDuration);
+        wait.until(ExpectedConditions.titleContains("W3Schools Tryit Editor"));
+
+        // Получаем список идентификаторов открытых вкладок
+        Set<String> handles1 = driver.getWindowHandles();
+        String currentWindowHandle = driver.getWindowHandle();
+// Выбираем идентификатор новой вкладки
+        for (String handle : handles1) {
+            if (!handle.equals("https://www.hyrtutorials.com/p/alertsdemo.html - Пошук Google")) {
+                driver.switchTo().window(handle);
+                break;
+            }
+        }
+
+/*// Переход на страницу https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit
+        driver.get("https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit");*/
+
+
 
         // Поиск элемента <input type="submit" value="Submit"> и клик на него
         WebElement submitButton = driver.findElement(By.cssSelector("input[type='submit'][value='Submit']"));
@@ -151,8 +196,8 @@ public class Ex1 {
         alertBoxBtn.click();
 
         // Ожидание появления модального окна и нажатие кнопки "Ok"
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(2));
+        Alert alert = wait1.until(ExpectedConditions.alertIsPresent());
         alert.accept();
 
         // Вывод сообщения в консоль

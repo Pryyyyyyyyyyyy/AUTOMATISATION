@@ -119,10 +119,15 @@ public class Ex1 {
         textarea2.clear();
         textarea2.sendKeys("Прус");
 
+        driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.SECONDS);
 
-      /*  // MoveTo и клик на элементе <span class="cm-m-xml"></span>
+        WebElement submitButton = driver.findElement(By.cssSelector("input[value='Submit']"));
+        submitButton.click();
+
+
+        /*// MoveTo и клик на элементе <span class="cm-m-xml"></span>
         Actions actions1 = new Actions(driver);
-        actions1.moveToElement(spanElement).click().perform();*/
+        actions1.moveToElement(spanElement4).click().perform();*/
 
         // Ввод сообщения в поле ввода консоли
         WebElement consoleInput = driver.findElement(By.cssSelector("div.ace_layer.ace_text-layer > textarea"));

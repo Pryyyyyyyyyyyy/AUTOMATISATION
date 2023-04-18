@@ -129,6 +129,22 @@ public class Ex1 {
         Actions actions1 = new Actions(driver);
         actions1.moveToElement(spanElement4).click().perform();*/
 
+        // Находим родительский элемент
+        WebElement parentElement = driver.findElement(By.className("CodeMirror-lines"));
+
+// Находим дочерний элемент через родительский элемент
+        WebElement childElement = parentElement.findElement(By.className("cm-m-xml"));
+        childElement.click();
+        String text = childElement.getText();
+        childElement.clear();
+        childElement.sendKeys("Note: This tutorial will not teach you how servers are processing input. Processing input is explained in our PHP tutorial.");
+
+
+
+        WebElement frame5 = driver.findElement(By.cssSelector("iframe[id='iframeResult']"));
+
+        driver.switchTo().frame(frame5);
+
         // Ввод сообщения в поле ввода консоли
         WebElement consoleInput = driver.findElement(By.cssSelector("div.ace_layer.ace_text-layer > textarea"));
         consoleInput.sendKeys("Note: This tutorial will not teach you how servers are processing input. Processing input is explained in our PHP tutorial.");

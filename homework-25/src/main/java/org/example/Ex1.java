@@ -126,16 +126,36 @@ public class Ex1 {
 
         System.out.println("Note: This tutorial will not teach you how servers are processing input. Processing input is explained in our PHP tutorial.");
 
-        WebElement frame5 = driver.findElement(By.cssSelector("iframe[id='iframeResult']"));
 
-        driver.switchTo().frame(frame5);
-
-        // Ввод сообщения в поле ввода консоли
-        WebElement consoleInput = driver.findElement(By.cssSelector("div.ace_layer.ace_text-layer > textarea"));
-        consoleInput.sendKeys("Note: This tutorial will not teach you how servers are processing input. Processing input is explained in our PHP tutorial.");
 
         // Неявное ожидание в 2 секунды
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+
+
+// переключаемся на нужное окно
+        String expectedTitle2 = "Create account | Guinness World Records";
+        Set<String> handles2 = driver.getWindowHandles();
+
+        for (String handle : handles2) {
+            driver.switchTo().window(handle);
+            String title = driver.getTitle();
+            if (driver.getTitle().equals("Create account | Guinness World Records")) {
+                break;
+            }
+        }
+
+   /*     driver.get("https://www.guinnessworldrecords.com/account/register?");
+        String expectedTitle2 = "Create account | Guinness World Records";
+        Set<String> handles2 = driver.getWindowHandles();
+
+        for (String handle : handles2) {
+            driver.switchTo().window(handle);
+            String title = driver.getTitle();
+            if (title.equals(expectedTitle2)) {
+                break;
+            }
+        }*/
 
         // Переключение на окно страницы https://www.guinnessworldrecords.com/account/register?
         driver.switchTo().defaultContent();

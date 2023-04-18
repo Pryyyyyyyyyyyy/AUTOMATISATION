@@ -85,27 +85,25 @@ public class Ex1 {
         // Максимальное ожидание загрузки страницы в 10 секунд
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 
-        /*// Переход на страницу https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit
-        driver.get("https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit");*/
+        // Переход на страницу https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit
+        driver.get("https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit");
 
         // Ожидаем загрузки страницы
         Duration timeoutDuration = Duration.ofSeconds(10);
         WebDriverWait wait = new WebDriverWait(driver, timeoutDuration);
         wait.until(ExpectedConditions.titleContains("W3Schools Tryit Editor"));
-
-        // Получаем список идентификаторов открытых вкладок
+        driver.get("https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit");
+        String expectedTitle = "W3Schools Tryit Editor";
         Set<String> handles1 = driver.getWindowHandles();
-        String currentWindowHandle = driver.getWindowHandle();
-// Выбираем идентификатор новой вкладки
+
         for (String handle : handles1) {
-            if (!handle.equals("https://www.hyrtutorials.com/p/alertsdemo.html - Пошук Google")) {
-                driver.switchTo().window(handle);
+            driver.switchTo().window(handle);
+            String title = driver.getTitle();
+            if (title.equals(expectedTitle)) {
                 break;
             }
         }
 
-/*// Переход на страницу https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit
-        driver.get("https://www.w3schools.com/html/tryit.asp?filename=tryhtml_form_submit");*/
 
 
 

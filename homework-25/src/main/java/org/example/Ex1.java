@@ -64,7 +64,6 @@ public class Ex1 {
         WebElement searchButton = driver.findElement(By.id("APjFqb"));
         searchButton.click();
 
-        System.out.println("открыто первое окно");
 
         // Находим элемент поисковой строки и вводим ссылку на страницу AlertsDemo
         WebElement searchInput1 = driver.findElement(By.id("APjFqb"));
@@ -125,21 +124,7 @@ public class Ex1 {
         submitButton.click();
 
 
-        /*// MoveTo и клик на элементе <span class="cm-m-xml"></span>
-        Actions actions1 = new Actions(driver);
-        actions1.moveToElement(spanElement4).click().perform();*/
-
-        // Находим родительский элемент
-        WebElement parentElement = driver.findElement(By.className("CodeMirror-lines"));
-
-// Находим дочерний элемент через родительский элемент
-        WebElement childElement = parentElement.findElement(By.className("cm-m-xml"));
-        childElement.click();
-        String text = childElement.getText();
-        childElement.clear();
-        childElement.sendKeys("Note: This tutorial will not teach you how servers are processing input. Processing input is explained in our PHP tutorial.");
-
-
+        System.out.println("Note: This tutorial will not teach you how servers are processing input. Processing input is explained in our PHP tutorial.");
 
         WebElement frame5 = driver.findElement(By.cssSelector("iframe[id='iframeResult']"));
 

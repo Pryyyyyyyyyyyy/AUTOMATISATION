@@ -246,7 +246,7 @@ public class Ex1 {
         WebElement confirmButton = driver.findElement(By.xpath("//button[@id='confirmBox']"));
         confirmButton.click();
 
-*/
+
         WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(5));
         Alert aler2 = wait2.until(ExpectedConditions.alertIsPresent());
         alert.dismiss();

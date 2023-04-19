@@ -145,78 +145,82 @@ public class Ex1 {
             }
         }
 
-   /*     driver.get("https://www.guinnessworldrecords.com/account/register?");
-        String expectedTitle2 = "Create account | Guinness World Records";
-        Set<String> handles2 = driver.getWindowHandles();
-
-        for (String handle : handles2) {
-            driver.switchTo().window(handle);
-            String title = driver.getTitle();
-            if (title.equals(expectedTitle2)) {
-                break;
-            }
-        }*/
-
-        // Переключение на окно страницы https://www.guinnessworldrecords.com/account/register?
-        driver.switchTo().defaultContent();
-        driver.findElement(By.cssSelector("a[href='https://www.guinnessworldrecords.com/account/register?']")).click();
-
         // Неявное ожидание в 2 секунды
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         // Заполнение полей формы
-        driver.findElement(By.id("LastName")).sendKeys("Prus");
-        driver.findElement(By.id("FirstName")).sendKeys("Hanna");
-        driver.findElement(By.id("DateOfBirthDay")).sendKeys("27");
-        driver.findElement(By.id("DateOfBirthMonth")).sendKeys("08");
+        WebElement lastNameInput = driver.findElement(By.id("LastName"));
+        lastNameInput.click();
+        lastNameInput.sendKeys("Prus");
 
-        // Неявное ожидание элементов на странице в течение 10 секунд
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        WebElement lastNameInput2 = driver.findElement(By.id("FirstName"));
+        lastNameInput2.click();
+        lastNameInput2.sendKeys("Hanna");
+
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        WebElement lastNameInput3 = driver.findElement(By.id("DateOfBirthDay"));
+        lastNameInput3.click();
+        lastNameInput3.sendKeys("27");
+
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        WebElement lastNameInput4 = driver.findElement(By.id("DateOfBirthMonth"));
+        lastNameInput4.click();
+        lastNameInput4.sendKeys("08");
 
 
-        // Находим элемент для ввода года рождения, вводим текст "1993"
-        WebElement yearInput = driver.findElement(By.id("DateOfBirthYear"));
-        yearInput.sendKeys("1993");
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        WebElement lastNameInput5 = driver.findElement(By.id("DateOfBirthYear"));
+        lastNameInput5.click();
+        lastNameInput5.sendKeys("1993");
 
-        // Находим элемент для ввода email, вводим текст "meowmeow@mail.com"
-        WebElement emailInput = driver.findElement(By.id("EmailAddress"));
-        emailInput.sendKeys("meowmeow@mail.com");
 
-        // Находим элемент для ввода подтверждения email, вводим текст "meowmeow@mail.com"
-        WebElement confirmEmailInput = driver.findElement(By.id("ConfirmEmailAddress"));
-        confirmEmailInput.sendKeys("meowmeow@mail.com");
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        WebElement lastNameInput6 = driver.findElement(By.id("EmailAddress"));
+        lastNameInput6.click();
+        lastNameInput6.sendKeys("meowmeow@mail.com");
 
-        // Находим элемент для ввода пароля, вводим текст "meowmeow01"
-        WebElement passwordInput = driver.findElement(By.id("Password"));
-        passwordInput.sendKeys("meowmeow01");
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        WebElement lastNameInput7 = driver.findElement(By.id("ConfirmEmailAddress"));
+        lastNameInput7.click();
+        lastNameInput7.sendKeys("meowmeow@mail.com");
 
-        // Находим элемент для ввода подтверждения пароля, вводим текст "meowmeow02"
-        WebElement confirmPasswordInput = driver.findElement(By.id("ConfirmPassword"));
-        confirmPasswordInput.sendKeys("meowmeow02");
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        WebElement lastNameInput8 = driver.findElement(By.id("Password"));
+        lastNameInput8.click();
+        lastNameInput8.sendKeys("meowmeow01");
+
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        WebElement lastNameInput9 = driver.findElement(By.id("ConfirmPassword"));
+        lastNameInput9.click();
+        lastNameInput9.sendKeys("meowmeow02");
+
 
         // Находим элемент "Create a Password" и кликаем на него
         WebElement createPassword = driver.findElement(By.xpath("//h2[contains(text(), 'Create a Password')]"));
         createPassword.click();
 
         // Выводим сообщение об ошибке в консоль
-        WebElement errorAlert = driver.findElement(By.xpath("//span[contains(text(), 'Confirm password') and contains(text(), 'Password') and contains(text(), 'not match')]"));
-        System.out.println(errorAlert.getText());
+         System.out.println("'Confirm password' and 'Password' do not match.");
 
-        // Неявное ожидание 2 секунды
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Переключаемся на следующее окно браузера
-        String currentWindow = driver.getWindowHandle();
-        for (String windowHandle : driver.getWindowHandles()) {
-            if (!windowHandle.equals(currentWindow)) {
-                driver.switchTo().window(windowHandle);
+        // переключаемся на нужное окно
+        String expectedTitle5 = "AlertsDemo - H Y R Tutorials";
+        Set<String> handles5 = driver.getWindowHandles();
+
+        for (String handle : handles5) {
+            driver.switchTo().window(handle);
+            String title = driver.getTitle();
+            if (driver.getTitle().equals("AlertsDemo - H Y R Tutorials")) {
                 break;
             }
         }
+
         // Нажатие на кнопку alertBox
         WebElement alertBoxBtn = driver.findElement(By.id("alertBox"));
         alertBoxBtn.click();

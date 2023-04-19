@@ -220,7 +220,7 @@ public class Ex1 {
                 break;
             }
         }
-
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         // Нажатие на кнопку alertBox
         WebElement alertBoxBtn = driver.findElement(By.id("alertBox"));
         alertBoxBtn.click();
@@ -233,15 +233,31 @@ public class Ex1 {
         // Вывод сообщения в консоль
         System.out.println("I am an alert box!");
 
-        // Нажатие на кнопку confirmBox
-        WebElement confirmBoxBtn = driver.findElement(By.id("confirmBox"));
-        confirmBoxBtn.click();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        // Ожидание появления модального окна и нажатие кнопки "Cancel"
-        wait.until(ExpectedConditions.alertIsPresent()).dismiss();
+        // инициализируем объект Actions и используем его для выполнения клика на другом элементе
+        Actions actions7 = new Actions(driver);
+        WebElement otherElement = driver.findElement(By.xpath("//div[@class='grippy-host']"));
+        actions.moveToElement(otherElement).click().build().perform();
+
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+// теперь, когда фокус снят с элемента, который перекрывает кнопку, мы можем кликнуть по кнопке
+        WebElement confirmButton = driver.findElement(By.xpath("//button[@id='confirmBox']"));
+        confirmButton.click();
+
+*/
+        WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(5));
+        Alert aler2 = wait2.until(ExpectedConditions.alertIsPresent());
+        alert.dismiss();
+
+        System.out.println("Press a button!");
+
 
         // Вывод сообщения в консоль
-        System.out.println("Press a button!");
+
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
 
         // Нажатие на кнопку promptBox
         WebElement promptBoxBtn = driver.findElement(By.id("promptBox"));
@@ -249,14 +265,13 @@ public class Ex1 {
 
         // Ожидание появления модального окна, ввод текста и нажатие кнопки "Ok"
         alert = wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert2 = driver.switchTo().alert();
         alert.sendKeys("Final step of this task");
         alert.accept();
 
         // Вывод сообщения в консоль
         System.out.println("You entered text Final step of this task in prompt popup");
-
-       /* // Закрытие браузера
+        // Закрытие браузера
         driver.quit();
-*/
     }
 }

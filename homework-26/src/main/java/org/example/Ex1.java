@@ -98,22 +98,7 @@ public class Ex1 {
         driver.get("https://dan-it.com.ua/uk/");
 
         // найдем элемент по css-селектору и сделаем его неактивным
-        WebElement element = driver.findElement(By.cssSelector("button[type='button'][tagName='button']"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('disabled', true);", element);
-
-        // запустим поток, который через 5 секунд сделает элемент кликабельным
-        new Thread(() -> {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            ((JavascriptExecutor) driver).executeScript("arguments[0].removeAttribute('disabled');", element);
-        }).start();
-
-        // запустим метод ожидания и кликнем по элементу после его активации
-        Ex1 framework = null;
-        framework.waitForElementToBeClickable(By.cssSelector("button[type='button'][tagName='button']"));
+        WebElement element = driver.findElement(By.cssSelector("//div[@class='banner__meta-data banner-meta']"));
         element.click();
 
     }

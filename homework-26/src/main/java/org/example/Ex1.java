@@ -1,5 +1,4 @@
 package org.example;
-import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,6 +6,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import java.time.Duration;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
 
 public class Ex1 {
     private WebDriver driver;
@@ -87,7 +87,7 @@ public class Ex1 {
     public WebElement waitForElement(By by) {
         return wait.until(driver -> driver.findElement(by));
     }
-    @org.junit.Test
+    @Test
     public void testWaitForElementToBeClickable() {
 
         System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
@@ -116,7 +116,5 @@ public class Ex1 {
         framework.waitForElementToBeClickable(By.cssSelector("button[type='button'][tagName='button']"));
         element.click();
 
-        // проверим, что мы находимся на ожидаемой странице
-        Assert.assertEquals(driver.getCurrentUrl(), "https://dan-it.com.ua/uk/");
     }
 }

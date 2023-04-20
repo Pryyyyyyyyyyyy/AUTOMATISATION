@@ -24,9 +24,9 @@ public class Ex1 {
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
-    public void waitForTextToBePresentInElementValue(By by, String text) {
+/*    public void waitForTextToBePresentInElementValue(By by, String text) {
         wait.until(ExpectedConditions.textToBePresentInElementValue(by, text));
-    }
+    }*/
 
     public void waitForInvisibilityOfElementLocated(By by) {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(by));

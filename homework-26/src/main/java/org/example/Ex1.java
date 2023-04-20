@@ -94,7 +94,7 @@ public class Ex1 {
         WebElement element = driver.findElement(By.cssSelector("button[type='button'][tagName='button']"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('disabled', true);", element);
 
-        // запустим асинхронный поток, который через 5 секунд сделает элемент кликабельным
+        // запустим поток, который через 5 секунд сделает элемент кликабельным
         new Thread(() -> {
             try {
                 Thread.sleep(5000);

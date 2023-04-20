@@ -1,11 +1,12 @@
 package org.example;
 import org.junit.Assert;
-import org.junit.Test;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import java.time.Duration;
+import org.openqa.selenium.WebElement;
 
 public class Ex1 {
     private WebDriver driver;
@@ -71,7 +72,7 @@ public class Ex1 {
         return wait.until(ExpectedConditions.elementToBeClickable(by));
     }
 
-    public WebElement waitForElementToBeSelectedReturn(By by) {
+    public Boolean waitForElementToBeSelectedReturn(By by) {
         return wait.until(ExpectedConditions.elementToBeSelected(by));
     }
 
@@ -79,7 +80,7 @@ public class Ex1 {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    public WebElement waitForFrameToBeAvailableAndSwitchToItReturn(By by) {
+    public WebDriver waitForFrameToBeAvailableAndSwitchToItReturn(By by) {
         return wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(by));
     }
 
@@ -88,6 +89,12 @@ public class Ex1 {
     }
     @org.junit.Test
     public void testWaitForElementToBeClickable() {
+
+        System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
+
+       /* // Создание экземпляра WebDriver для Chrome
+        WebDriver driver = new ChromeDriver();*/
+
         driver.get("https://dan-it.com.ua/uk/");
 
         // найдем элемент по css-селектору и сделаем его неактивным
@@ -105,6 +112,7 @@ public class Ex1 {
         }).start();
 
         // запустим метод ожидания и кликнем по элементу после его активации
+        Ex1 framework = null;
         framework.waitForElementToBeClickable(By.cssSelector("button[type='button'][tagName='button']"));
         element.click();
 

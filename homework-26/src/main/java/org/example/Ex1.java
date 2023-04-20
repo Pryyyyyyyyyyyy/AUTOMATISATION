@@ -1,6 +1,7 @@
 package org.example;
 import org.junit.Assert;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -91,8 +92,8 @@ public class Ex1 {
 
         System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
 
-       /* // Создание экземпляра WebDriver для Chrome
-        WebDriver driver = new ChromeDriver();*/
+
+        WebDriver driver = new ChromeDriver();
 
         driver.get("https://dan-it.com.ua/uk/");
 

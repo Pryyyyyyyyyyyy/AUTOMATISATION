@@ -1,7 +1,6 @@
 package org.example;
 import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -12,14 +11,14 @@ public class Ex1 {
     private WebDriver driver;
     private Wait<WebDriver> wait;
 
-    public void CustomWait(WebDriver driver, Duration duration) {
+    public void Ex1(WebDriver driver, Duration duration) {
         this.driver = driver;
         this.wait = new FluentWait<>(driver)
                 .withTimeout(duration)
                 .pollingEvery(Duration.ofMillis(500))
                 .ignoring(TimeoutException.class);
     }
-
+//this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     public void waitForPresenceOfElementLocated(By by) {
         wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }

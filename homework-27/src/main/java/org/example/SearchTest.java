@@ -52,23 +52,17 @@ public class SearchTest {
         searchElement2.sendKeys("спесь");
         searchElement2.sendKeys(Keys.ENTER);
 
-        /*WebElement searchElement3 = driver.findElement(By.cssSelector("input[placeholder='смесь']"));
-        WebElement searchElement2 = wait.until(ExpectedConditions.presenceOfElementLocated(searchElement3));
-        searchElement2.click();
-        searchElement2.clear();
-        searchElement2.sendKeys("спесь");
-        searchElement2.sendKeys(Keys.ENTER);*/
-       /* // Поиск
-        searchInput2.sendKeys("спесь");
-        searchInput2.submit();*/
-/*
-        By searchInput2 = By.xpath("//input[@placeholder='смесь']");
-        searchElement2.sendKeys("спесь");
-        searchElement2.sendKeys(Keys.ENTER);*/
 
+        WebElement resultTitle2 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@placeholder='спесь']")));
+        assertTrue(resultTitle2.getText().contains("спесь"), "Результат поиска содержит слово 'спесь'");
 
-        WebElement resultTitle2 = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("j-catalog-header")));
-        assertTrue(resultTitle2.getText().contains("спесь"), "Результат поиска не содержит слово 'смесь'");
+        WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement searchElement3 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@placeholder='спесь']")));
+        searchElement3.clear(); // очистить поле ввода
+        searchElement3.sendKeys("ересь");
+        searchElement3.sendKeys(Keys.ENTER);
+      WebElement resultTitle3 = wait.until(ExpectedConditions.presenceOfElementLocated((By) searchElement3));
+        assertTrue(searchElement3.getText().contains("ересь"), "Результат поиска содержит слово 'ересь'");
 
         /*// Поиск по слову "спесь"
         searchInput = driver.findElement(By.id("search_uid3d6e063a67bfdef44698aea0fe92c272"));

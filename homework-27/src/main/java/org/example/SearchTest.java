@@ -18,6 +18,7 @@ import static org.testng.Assert.assertTrue;
 
 public class SearchTest {
     private WebDriver driver;
+  /*  Ex1selectors selectors = new Ex1selectors(driver);*/
 
     @BeforeTest
     public void setUp() {
@@ -48,37 +49,40 @@ public class SearchTest {
 
         WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement searchElement2 = wait.until(ExpectedConditions.presenceOfElementLocated(searchInput1));
-        searchElement2.clear(); // очистить поле ввода
+        searchElement2.clear();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         searchElement2.sendKeys("спесь");
-        searchElement2.sendKeys(Keys.ENTER);
+      /*  wait.until(ExpectedConditions.elementToBeClickable(searchElement2)).*/ searchElement2.sendKeys(Keys.ENTER);
+        WebElement resultTitle2 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[contains(text(), 'спесь')]")));
 
 
-        WebElement resultTitle2 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@placeholder='спесь']")));
+      /*  WebElement resultTitle2 = (new Ex1selectors (driver)
+        .waitForPresenceOfElementLocated(By.xpath("//[contains(text(), 'Результаты поиска «спесь»')]")));*/
+
+     /*   try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }*/
+
+
+
         assertTrue(resultTitle2.getText().contains("спесь"), "Результат поиска содержит слово 'спесь'");
+        /*Результаты поиска */
 
-        WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(5));
-        WebElement searchElement3 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@placeholder='спесь']")));
-        searchElement3.clear(); // очистить поле ввода
+        WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement searchElement3 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='спесь']")));
+        searchElement3.clear();
         searchElement3.sendKeys("ересь");
         searchElement3.sendKeys(Keys.ENTER);
+
       WebElement resultTitle3 = wait.until(ExpectedConditions.presenceOfElementLocated((By) searchElement3));
         assertTrue(searchElement3.getText().contains("ересь"), "Результат поиска содержит слово 'ересь'");
 
-        /*// Поиск по слову "спесь"
-        searchInput = driver.findElement(By.id("search_uid3d6e063a67bfdef44698aea0fe92c272"));
-        searchInput.sendKeys("спесь");
-        searchInput.submit();
-        resultTitle = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("j-catalog-header")));
-        assertTrue(resultTitle.getText().contains("спесь"), "Результат поиска не содержит слово 'спесь'");
-
-        // Поиск по слову "ересь"
-        searchInput = driver.findElement(By.id("search_uid3d6e063a67bfdef44698aea0fe92c272"));
-        searchInput.sendKeys("ересь");
-        searchInput.submit();
-        resultTitle = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("j-catalog-header")));
-        assertTrue(resultTitle.getText().contains("ересь"), "Результат поиска не содержит слово 'ересь'");
-    }
-*/
     }
         @AfterClass
         public void tearDown() {

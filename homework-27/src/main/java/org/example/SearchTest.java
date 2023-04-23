@@ -18,7 +18,6 @@ import static org.testng.Assert.assertTrue;
 
 public class SearchTest {
     private WebDriver driver;
-  /*  Ex1selectors selectors = new Ex1selectors(driver);*/
 
     @BeforeTest
     public void setUp() {
@@ -33,14 +32,11 @@ public class SearchTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement searchInput = driver.findElement(By.cssSelector("input[placeholder='поиск товаров']"));
 
-        // Поиск по слову "смесь"
         searchInput.sendKeys("смесь");
         searchInput.submit();
 
-
         WebElement resultTitle = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[placeholder='поиск товаров'][value='смесь']")));
         assertTrue(resultTitle.getAttribute("value").contains("смесь"), "Результат поиска не содержит слово 'смесь'");
-
 
         WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement searchInput2 = driver.findElement(By.cssSelector("input[placeholder='поиск товаров'][value='смесь']"));
@@ -51,7 +47,6 @@ public class SearchTest {
         WebElement resultTitle1 = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[placeholder='поиск товаров'][value='спесь']")));
         assertTrue(resultTitle1.getAttribute("value").contains("спесь"), "Результат поиска не содержит слово 'спесь'");
 
-
         WebDriverWait wait2 = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement searchInput3 = driver.findElement(By.cssSelector("input[placeholder='поиск товаров'][value='спесь']"));
         searchInput3.clear();
@@ -60,7 +55,6 @@ public class SearchTest {
 
         WebElement resultTitle2 = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[placeholder='поиск товаров'][value='ересь']")));
         assertTrue(resultTitle2.getAttribute("value").contains("ересь"), "Заголовок страницы не содержит слово 'ересь'");
-
 
     }
         @AfterClass

@@ -8,7 +8,7 @@ import java.time.Duration;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
-public class Ex1 {
+public class Ex1selectors {
     private WebDriver driver;
     private Wait<WebDriver> wait;
 

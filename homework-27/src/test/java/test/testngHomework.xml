@@ -6,7 +6,7 @@
             <class name="TestGuinnessWorldRecords"/>
             <class name="TestScenario1"/>
             <class name="testModalWindowContainsText"/>
-            <class name="SearchTest"/>
+            <class name="PaymentAndDeliveryTest"/>
         </classes>
     </test>
 </suite>

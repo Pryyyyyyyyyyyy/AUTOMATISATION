@@ -2,7 +2,7 @@
 <suite name="AllTests Suite">
     <test name="AllTestCases">
         <classes>
-            <class name="PaymentAndDeliveryTest"/>
+            <class name="org.example.PaymentAndDeliveryTest"/>
         </classes>
     </test>
 </suite>

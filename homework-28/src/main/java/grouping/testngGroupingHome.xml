@@ -1,0 +1,37 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="GroupingTests">
+    <test name="FirstGroupTests">
+        <groups>
+            <run>
+                <include name="first"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="grouping.Groups">
+                <methods>
+                    <include name="one"/>
+                    <include name="three"/>
+                    <include name="five"/>
+                    <include name="seven"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="SecondGroupTests">
+        <groups>
+            <run>
+                <include name="second"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="grouping.Groups">
+                <methods>
+                    <include name="two"/>
+                    <include name="four"/>
+                    <include name="six"/>
+                    <include name="eight"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

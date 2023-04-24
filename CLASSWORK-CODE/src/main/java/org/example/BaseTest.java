@@ -15,7 +15,7 @@ public class BaseTest {
     static WebDriver driver;
 
     @BeforeSuite
-    public void acceptCookies(){
+    public void acceptCookies() {
         System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -24,10 +24,9 @@ public class BaseTest {
                 .waitForPresenceOfElementLocated(By.xpath("//a[@aria-label='dismiss cookie message']")));
         element.click();
     }
+
     @AfterSuite
-    public void closeDriverw(){
+    public void closeDriver() {
         driver.quit();
     }
-
-
 }

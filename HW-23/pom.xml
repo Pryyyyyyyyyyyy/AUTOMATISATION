@@ -42,6 +42,21 @@
             <artifactId>testng</artifactId>
             <version>7.7.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.tesults.testng</groupId>
+            <artifactId>tesults-testng</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.railflow.annotations</groupId>
+            <artifactId>railflow-testng-annotations</artifactId>
+            <version>0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>me.ronshapiro.rx.priority</groupId>
+            <artifactId>priority</artifactId>
+            <version>0.2</version>
+        </dependency>
     </dependencies>
 
 </project>

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -24,8 +25,16 @@ public class FoxtrotParameter {
         cityElement.click();
     }
 
+    @DataProvider(name = "searchData")
+    public Object[][] searchData() {
+        return new Object[][]{
+                {"машина", "машина"},
+                {"input", "input"}
+        };
+    }
+
     @Parameters({"searchWord", "newWord"})
-    @Test
+    @Test(dataProvider = "searchData")
     public void searchTest(String searchWord, String newWord) {
         WebElement searchField = driver.findElement(By.cssSelector("input.evinent-search-input"));
         searchField.click();
@@ -48,3 +57,5 @@ public class FoxtrotParameter {
         driver.quit();
     }
 }
+
+

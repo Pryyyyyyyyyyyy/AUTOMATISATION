@@ -1,33 +1,23 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-
-<suite name="Foxtrot Data Provider Tests">
-    <test name="Search Test">
-        <parameters>
-            <parameter name="searchWord" value="машина" />
-            <parameter name="newWord" value="машина" />
-        </parameters>
+<suite name="Foxtrot Tests" verbose="1">
+    <test name="Foxtrot Search Test">
+        <parameter name="searchWord" value=""/>
+        <parameter name="newWord" value=""/>
         <classes>
-            <class name="foxtrot.FoxtrotParameter" />
+            <class name="foxtrot.FoxtrotParameter"/>
+            <methods>
+                <include name="searchTest"/>
+            </methods>
         </classes>
-    </test>
-
-    <test name="Search Test">
-        <parameters>
-            <parameter name="searchWord" value="input" />
-            <parameter name="newWord" value="input" />
-        </parameters>
-        <classes>
-            <class name="foxtrot.FoxtrotParameter" />
-        </classes>
-    </test>
-
-    <test name="Search Test">
-        <parameters>
-            <parameter name="searchWord" value="смысл" />
-            <parameter name="newWord" value="Смысл" />
-        </parameters>
-        <classes>
-            <class name="foxtrot.FoxtrotParameter" />
-        </classes>
+        <methods>
+            <include name="setUp"/>
+        </methods>
+        <data-provider name="searchData" parallel="false">
+            <method-signature>
+                <parameter-type>java.lang.String</parameter-type>
+                <parameter-type>java.lang.String</parameter-type>
+            </method-signature>
+            <include name="searchData"/>
+        </data-provider>
     </test>
 </suite>

@@ -1,9 +1,9 @@
 package org;
+import org.example.Waiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -12,6 +12,7 @@ import static org.testng.Assert.assertTrue;
 
 public class Foxtrotn {
     private WebDriver driver;
+
     @BeforeTest
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
@@ -27,23 +28,17 @@ public class Foxtrotn {
         WebElement searchField = driver.findElement(By.cssSelector("input.evinent-search-input"));
         searchField.sendKeys(searchWord);
         searchField.submit();
-        WebElement pageTitle = driver.findElement(By.cssSelector("div.page__title h1"));
-        String pageTitleText = pageTitle.getText();
-        if (pageTitleText.contains("Знайдено по запиту")) {
-            assertTrue(pageTitleText.contains(expectedWord.toUpperCase()));
-        } else {
-            assertTrue(pageTitleText.contains(expectedWord));
-        }
+
+        (new Waiters(driver)).waitForTitleContains("Ви шукали " + searchWord);
+        assertTrue(driver.findElement(By.tagName("h1")).getText()
+                .replace("Знайдено по запиту", "").equalsIgnoreCase(expectedWord));
+        driver.quit();
+
     }
 
     @DataProvider(name = "searchWords")
     public Object[][] searchData() {
-        return new Object[][]{{"машина", "машина" }, {"input", "input"}, {"смысл", "смысл"}};
-    }
+        return new Object[][]{{"машина"}, {"input"}};
 
-    @AfterTest
-    public void tearDown() {
-        driver.quit();
     }
-
 }

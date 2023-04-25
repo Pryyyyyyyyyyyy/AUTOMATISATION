@@ -1,6 +1,5 @@
 package org;
 
-import org.example.Waiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,8 +9,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 public class FoxtrotSearchTest {
 
@@ -50,8 +47,8 @@ public class FoxtrotSearchTest {
                 .replace("Знайдено по запиту ", "").equals(name));*/
     @DataProvider(name = "searchWords")
     public Object[][] searchData() {
-        return new Object[][]{{"машина", "машина" }, {"input", "input"},
-                {"смысл", "смысл"}};
+        return new Object[][]{{"машина"}, {"input"},
+                {"смысл"}};
     }
     @AfterClass
     public void tearDown() {

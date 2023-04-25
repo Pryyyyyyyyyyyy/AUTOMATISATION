@@ -1,6 +1,5 @@
-package org;
+package foxtrot;
 
-/*
 // priklad rishennya
 
 import org.example.Waiters;
@@ -38,7 +37,7 @@ public class Dgg {
     @DataProvider(name = "searchParameters")
     public Object[][] createData(){
         return new Object[][]{
-                {"Carrot","CARROT"},
+                {"Carrot","CARROT"}
         };
     }
-}*/
+}

@@ -1,4 +1,5 @@
-package org;
+package foxtrot;
+
 import org.example.Waiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,24 +23,27 @@ public class FoxtrotDataProvider {
         WebElement cityElement = driver.findElement(By.xpath("//li[@class='popup__cities_item']//a[contains(text(),'Ужгород')]"));
         cityElement.click();
     }
-
     @Test(dataProvider = "searchWords")
-    public void searchTest(String searchWord) {
+    public void searchTest(String searchWord, String newWord) {
         WebElement searchField = driver.findElement(By.cssSelector("input.evinent-search-input"));
-        String inputWord = searchWord;
-        searchField.sendKeys(searchWord);
-        searchField.submit();
+        searchField.click();
+        WebElement input = (new Waiters(driver))
+                .waitForPresenceOfElementLocated(By.xpath("//input[@placeholder='Я шукаю ...']"));
+        input.sendKeys(searchWord);
+        input.submit();
 
-        (new Waiters(driver)).waitForTitleContains("Ви шукали " + searchWord);
-        assertTrue(driver.findElement(By.tagName("h1")).getText()
-                .replace("Знайдено по запиту", "").equalsIgnoreCase(inputWord));
+        (new Waiters(driver)).waitForTitleContains("Я шукаю ..." + searchWord);
+        assertTrue(driver.findElement(By.cssSelector("div.page__title")).getText()
+                .replace("Знайдено по запиту", "").equalsIgnoreCase(newWord));
         driver.quit();
 
     }
 
     @DataProvider(name = "searchWords")
     public Object[][] searchData() {
-        return (Object[][]) new Object[]{"машина", "input"};
+        return new Object[][]{
+                {"машина"},
+                {"input"}
+        };
     }
-
 }

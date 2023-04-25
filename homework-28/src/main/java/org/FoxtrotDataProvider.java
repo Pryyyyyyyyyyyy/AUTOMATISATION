@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
-public class Foxtrotn {
+public class FoxtrotDataProvider {
     private WebDriver driver;
 
     @BeforeTest
@@ -24,21 +24,22 @@ public class Foxtrotn {
     }
 
     @Test(dataProvider = "searchWords")
-    public void searchTest(String searchWord, String expectedWord) {
+    public void searchTest(String searchWord) {
         WebElement searchField = driver.findElement(By.cssSelector("input.evinent-search-input"));
+        String inputWord = searchWord;
         searchField.sendKeys(searchWord);
         searchField.submit();
 
         (new Waiters(driver)).waitForTitleContains("Ви шукали " + searchWord);
         assertTrue(driver.findElement(By.tagName("h1")).getText()
-                .replace("Знайдено по запиту", "").equalsIgnoreCase(expectedWord));
+                .replace("Знайдено по запиту", "").equalsIgnoreCase(inputWord));
         driver.quit();
 
     }
 
     @DataProvider(name = "searchWords")
     public Object[][] searchData() {
-        return new Object[][]{{"машина"}, {"input"}};
-
+        return (Object[][]) new Object[]{"машина", "input"};
     }
+
 }

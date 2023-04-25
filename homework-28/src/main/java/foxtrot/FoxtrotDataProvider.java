@@ -27,6 +27,7 @@ public class FoxtrotDataProvider {
     public void searchTest(String searchWord, String newWord) {
         WebElement searchField = driver.findElement(By.cssSelector("input.evinent-search-input"));
         searchField.click();
+
         WebElement input = (new Waiters(driver))
                 .waitForPresenceOfElementLocated(By.xpath("//input[@placeholder='Я шукаю ...']"));
         input.sendKeys(searchWord);

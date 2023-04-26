@@ -1,7 +1,5 @@
 package org.example;
 
-//Класс Actions для выполнения действий
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +10,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+
+//Класс Actions для выполнения действий
 
 public class ActionsClass {
     private final WebDriver driver;

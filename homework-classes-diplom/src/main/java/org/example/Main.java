@@ -5,6 +5,7 @@ package org.example;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -69,7 +70,7 @@ public class ExampleTest {
 
     @BeforeTest
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
         driver = new ChromeDriver();
         wait = new Waiters(driver);
         actions = new ActionsClass(driver);

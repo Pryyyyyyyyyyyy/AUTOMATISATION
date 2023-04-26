@@ -82,4 +82,7 @@ public class Waiters {
     public void waitForElementToBeSelected(By by){
         waitForFunction(ExpectedConditions.elementToBeSelected(driver.findElement(by)),EXPLICITY_WAIT);
     }
+
+    public void waitForVisibilityOfElementLocated(By h1) {
+    }
 }

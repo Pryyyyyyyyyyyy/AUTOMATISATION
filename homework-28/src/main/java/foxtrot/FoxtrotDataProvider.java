@@ -28,12 +28,13 @@ public class FoxtrotDataProvider {
     @Test(dataProvider = "searchWords")
     public void searchTest(String searchWord) {
         Waiters waiters = new Waiters(driver);
-     /*   WebElement searchField = driver.findElement(By.cssSelector("input.evinent-search-input"));*/
+       /* WebElement searchField = driver.findElement(By.cssSelector("input.evinent-search-input"));*/
         WebElement searchField = waiters.waitForVisabilityOfElementReturn(By.xpath("//input[@placeholder='Я шукаю ...']"));
         searchField.click();
         searchField.sendKeys(searchWord);
         WebElement button = waiters.waitForVisabilityOfElementReturn(By.xpath(" //input[@value='Знайти']"));
         button.click();
+
 
 
         waiters.waitForTitleContains("Знайдено по запиту");
@@ -48,18 +49,9 @@ public class FoxtrotDataProvider {
             assertEquals(result,"«"+searchWord+"»",
                     "Actual result = "+ (driver.findElement(By.tagName("h1")).getText())+
                             " Expected "+searchWord);
-        }
-        driver.quit();
-   /*     WebElement input = (new Waiters(driver))
-                .waitForPresenceOfElementLocated(By.xpath("//input[@placeholder='Я шукаю ...']"));
-        input.sendKeys(searchWord);
-        input.submit();
+                            }
 
-        (new Waiters(driver)).waitForTitleContains("Я шукаю ..." + searchWord);
-        assertTrue(driver.findElement(By.cssSelector("div.page__title")).getText()
-                .replace("Знайдено по запиту", "").equalsIgnoreCase(newWord));
-        driver.quit();
-*/
+
     }
 
     @DataProvider(name = "searchWords")
@@ -71,3 +63,14 @@ public class FoxtrotDataProvider {
         };
     }
 }
+
+ /*     WebElement input = (new Waiters(driver))
+                .waitForPresenceOfElementLocated(By.xpath("//input[@placeholder='Я шукаю ...']"));
+        input.sendKeys(searchWord);
+        input.submit();
+
+        (new Waiters(driver)).waitForTitleContains("Я шукаю ..." + searchWord);
+        assertTrue(driver.findElement(By.cssSelector("div.page__title")).getText()
+                .replace("Знайдено по запиту ", "").equalsIgnoreCase(newWord));
+        driver.quit();
+*/
